@@ -47,6 +47,7 @@ class Control_car(object):
 		while (end_time - start_time) <= exeTime:
 			self.send_car_msg(direction, turn)
 			end_time = time.time()
+		self.send_car_msg(0, 0)
 
 	##### Auto find person #####
 	def auto_move(self, control_msg):
@@ -64,7 +65,7 @@ class Control_car(object):
 		elif control_msg == "bigright":
 			self.go_direction(0.15, -0.8, 2)
 		elif control_msg == "turn":
-			self.go_direction(0, 6, 0.75)	
+			self.go_direction(0, 0.5, 0.5)	
 
 	##### Send car_msg #####
 	def send_car_msg(self, v, omega):

@@ -9,14 +9,13 @@ import time
 import socket
 
 class Yolo(object):
-	def __init__(self, target):
+	def __init__(self):
 		##### Socket #####
 		### GPU computer ###
 		self.HOST = "192.168.0.177"
 		self.PORT = 5050
 
 		self.yoloing = None
-		self.target = target
 
 		# Publishers
 		self.pub_location = rospy.Publisher("~location", String, queue_size=1)
@@ -26,6 +25,7 @@ class Yolo(object):
 
 	##### take a picture and send to GPU computer #####
 	def camera(self, exe_msg):
+		target = raw_input("Input Your Target: ")
 		print("[yolo_node] receive ~exe_camera")
 		with picamera.PiCamera() as camera:
 			camera.resolution = (640, 480)
@@ -36,7 +36,7 @@ class Yolo(object):
 			s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 			s.connect((self.HOST, self.PORT))
 			
-			s.sendall(self.target)
+			s.sendall(target)
 
 			while not rospy.is_shutdown():	
 				### Take a picture ###
@@ -59,7 +59,7 @@ class Yolo(object):
 				### Receive yolo output from server ###
 				location = s.recv(1024)
 				self.send_location(location)
-				time.sleep(1)
+				time.sleep(0.8)
 
 				if self.reach(location):
 					break
@@ -91,7 +91,6 @@ if __name__ == "__main__":
 	rospy.init_node("yolo", anonymous=False)
 
 	# target = raw_input("Input your target:")
-	target = "orange"
-	yolo = Yolo(target)
+	yolo = Yolo()
 	rospy.spin()
 

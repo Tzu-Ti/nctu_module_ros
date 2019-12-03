@@ -11,5 +11,7 @@
 
 	<include file="$(find yolo)/launch/yolo.launch">
         </include>
+	<include file="$(find control_car)/launch/control_car.launch">
+        </include>
 
 </launch>
