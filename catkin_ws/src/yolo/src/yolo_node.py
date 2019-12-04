@@ -12,7 +12,7 @@ class Yolo(object):
 	def __init__(self):
 		##### Socket #####
 		### GPU computer ###
-		self.HOST = "192.168.0.177"
+		self.HOST = "192.168.66.248"
 		self.PORT = 5050
 
 		self.yoloing = None
