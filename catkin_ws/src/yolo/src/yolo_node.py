@@ -48,7 +48,7 @@ class Yolo(object):
 				### Send image to GPU computer ###
 				imgFile = open("test.jpg")
 				while True:
-					imgData = imgFile.readline(1024)
+					imgData = imgFile.readline(4096)
 					if not imgData:
 						s.send("over")
 						break
@@ -57,9 +57,9 @@ class Yolo(object):
 				print("transit end")
 
 				### Receive yolo output from server ###
-				location = s.recv(1024)
+				location = s.recv(4096)
 				self.send_location(location)
-				time.sleep(0.8)
+				time.sleep(0.3)
 
 				if self.reach(location):
 					break
@@ -76,13 +76,13 @@ class Yolo(object):
 		if 'None' in location:
                         X = None
                         Y = None
-                        Area = None
+                        Bottom = None
                 else:
                         location = location.split(' ')
                         X = float(location[0])
                         Y = float(location[1])
-                        Area = float(location[2])
-			if Area > 50000:
+                        Bottom = float(location[2])
+			if Bottom > 300:
 				return True
                         else:
 				return False
