@@ -9,7 +9,7 @@ class Find_person(object):
 		# Initialize
 		self.X = None
 		self.Y = None
-		self.Area = None
+		self.Bottom = None
 
 		self.noneCount = 0
 
@@ -29,7 +29,7 @@ class Find_person(object):
 		if 'None' in location_msg:
 			self.X = None
 			self.Y = None
-			self.Area = None
+			self.Bottom = None
 			
 			self.noneCount += 1
 			self.turn()
@@ -37,7 +37,7 @@ class Find_person(object):
 			location = location_msg.split(' ')
 			self.X = float(location[0])
 			self.Y = float(location[1])
-			self.Area = float(location[2])
+			self.Bottom = float(location[2])
 			self.noneCount = 0
 			self.decision()
 
@@ -50,7 +50,7 @@ class Find_person(object):
 		X = self.X
 		Y = self.Y
 		area = self.Area
-		if area > 50000:
+		if area > 300:
 			print("Reach the target!")
 		elif X > 285 and X <= 355:
 			print("I should go straight")
