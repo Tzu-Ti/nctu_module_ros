@@ -49,8 +49,8 @@ class Find_person(object):
 	def decision(self):
 		X = self.X
 		Y = self.Y
-		area = self.Bottom
-		if area > 300:
+		bottom = self.Bottom
+		if bottom > 300:
 			print("Reach the target!")
 		elif X > 285 and X <= 355:
 			print("I should go straight")
